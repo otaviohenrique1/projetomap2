@@ -22,7 +22,7 @@ export default function App() {
     ...delta,
   });
 
-  const [texto, setTexto] = useState("");
+  // const [texto, setTexto] = useState("");
 
   const delta = {
     latitudeDelta: 0.0922,
@@ -57,7 +57,7 @@ export default function App() {
         />
       </View>
       <Text>{regionData.latitude} | {regionData.longitude}</Text>
-      <Text>{texto}</Text>
+      {/* <Text>{texto}</Text> */}
       <MapView
         style={styles.mapa}
         // initialRegion={{
@@ -74,8 +74,17 @@ export default function App() {
             longitude: region.longitude,
             ...delta,
           });
-          setTexto(regionData.latitude);
+          // setTexto(regionData.latitude);
         }} // Ativa quando o mapa terminar de ser movido
+        onPress={(e) => {
+          Alert.alert(
+            "Clicou",
+            `
+              Latitule: ${e.nativeEvent.coordinate.latitude}
+              Longitude: ${e.nativeEvent.coordinate.longitude}
+            `
+          );
+        }} // Quando o mapa for clicado
       />
       <StatusBar style="auto" />
     </View>
