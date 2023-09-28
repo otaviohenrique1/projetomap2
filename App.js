@@ -23,6 +23,32 @@ export default function App() {
   });
 
   // const [texto, setTexto] = useState("");
+  const [markers, setMarkers] = useState([
+    {
+      key: 0,
+      coords: {
+        latitude: -15.8080374,
+        longitude: -47.8750231
+      },
+      pinColor: "#FF0000",
+    },
+    {
+      key: 1,
+      coords: {
+        latitude: -15.8380374,
+        longitude: -47.8850231
+      },
+      pinColor: "#00FF00",
+    },
+    {
+      key: 2,
+      coords: {
+        latitude: -15.8480374,
+        longitude: -47.8950231
+      },
+      pinColor: "#0000FF",
+    },
+  ]);
 
   const delta = {
     latitudeDelta: 0.0922,
@@ -101,6 +127,17 @@ export default function App() {
           description='Gol 1.6 - Placa OHL 2010'
           pinColor={"#00FF00"}
         /> */}
+        {markers.map((marker) => {
+          return (
+            <Marker
+              key={marker.key}
+              coordinate={marker.coords}
+              title='Meu carro'
+              description='Gol 1.6 - Placa OHL 2010'
+              pinColor={marker.pinColor}
+            />
+          );
+        })}
       </MapView>
       <StatusBar style="auto" />
     </View>
