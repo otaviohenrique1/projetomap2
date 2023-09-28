@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 
 /*
 SP: 
@@ -72,24 +72,77 @@ export default function App() {
           setRegionData({
             latitude: region.latitude,
             longitude: region.longitude,
-            ...delta,
+            latitudeDelta: region.latitudeDelta,
+            longitudeDelta: region.longitudeDelta,
           });
           // setTexto(regionData.latitude);
         }} // Ativa quando o mapa terminar de ser movido
-        onPress={(e) => {
-          Alert.alert(
-            "Clicou",
-            `
-              Latitule: ${e.nativeEvent.coordinate.latitude}
-              Longitude: ${e.nativeEvent.coordinate.longitude}
-            `
-          );
-        }} // Quando o mapa for clicado
-      />
+      /* onPress={(e) => {
+        Alert.alert(
+          "Clicou",
+          `
+            Latitule: ${e.nativeEvent.coordinate.latitude}
+            Longitude: ${e.nativeEvent.coordinate.longitude}
+          `
+        );
+      }} // Quando o mapa for clicado */
+      /* mapType='standard' // Tipo do mapa exibido */
+      /* scrollEnabled={false} // Ativa ou desativa o movimento do mapa */
+      /* zoomEnabled={false} // Ativa ou desativa o zoom do mapa */
+      // rotateEnabled={false}  // Ativa ou desativa a retacao do mapa
+      // showsTraffic={true} // Mostra o trafego
+      >
+        {/* <Marker
+          coordinate={{
+            latitude: regionData.latitude,
+            longitude: regionData.longitude,
+          }}
+          title='Meu carro'
+          description='Gol 1.6 - Placa OHL 2010'
+          pinColor={"#00FF00"}
+        /> */}
+      </MapView>
       <StatusBar style="auto" />
     </View>
   );
 }
+
+/*
+<MapView
+  style={styles.mapa}
+  // initialRegion={{
+  //   latitude: -23.5492243,
+  //   longitude: -46.5813785,
+  //   latitudeDelta: 0.0922,
+  //   longitudeDelta: 0.0421,
+  // }}
+  region={regionData}
+  // onMapReady={() => {Alert.alert("MApa Totalmente Carregado")}} // Ativa quando o mapa for iniciado
+  onRegionChangeComplete={(region) => {
+    setRegionData({
+      latitude: region.latitude,
+      longitude: region.longitude,
+      latitudeDelta: region.latitudeDelta,
+      longitudeDelta: region.longitudeDelta,
+    });
+    // setTexto(regionData.latitude);
+  }} // Ativa quando o mapa terminar de ser movido
+  onPress={(e) => {
+    Alert.alert(
+      "Clicou",
+      `
+        Latitule: ${e.nativeEvent.coordinate.latitude}
+        Longitude: ${e.nativeEvent.coordinate.longitude}
+      `
+    );
+  }} // Quando o mapa for clicado
+  mapType='standard' // Tipo do mapa exibido
+  scrollEnabled={false} // Ativa ou desativa o movimento do mapa
+  zoomEnabled={false} // Ativa ou desativa o zoom do mapa
+  // rotateEnabled={false}  // Ativa ou desativa a retacao do mapa
+  // showsTraffic={true} // Mostra o trafego
+/>
+*/
 
 const styles = StyleSheet.create({
   container: {
