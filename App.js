@@ -76,8 +76,7 @@ export default function App() {
             setRegionData({
               latitude: -23.5492243,
               longitude: -46.5813785,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
+              ...delta,
             });
           }}
         />
@@ -103,20 +102,30 @@ export default function App() {
           });
           // setTexto(regionData.latitude);
         }} // Ativa quando o mapa terminar de ser movido
-      /* onPress={(e) => {
-        Alert.alert(
-          "Clicou",
-          `
-            Latitule: ${e.nativeEvent.coordinate.latitude}
-            Longitude: ${e.nativeEvent.coordinate.longitude}
-          `
-        );
-      }} // Quando o mapa for clicado */
-      /* mapType='standard' // Tipo do mapa exibido */
-      /* scrollEnabled={false} // Ativa ou desativa o movimento do mapa */
-      /* zoomEnabled={false} // Ativa ou desativa o zoom do mapa */
+      // onPress={(e) => {
+      //   Alert.alert(
+      //     "Clicou",
+      //     `
+      //       Latitule: ${e.nativeEvent.coordinate.latitude}
+      //       Longitude: ${e.nativeEvent.coordinate.longitude}
+      //     `
+      //   );
+      // }} // Quando o mapa for clicado
+      // mapType='standard' // Tipo do mapa exibido
+      // scrollEnabled={false} // Ativa ou desativa o movimento do mapa
+      // zoomEnabled={false} // Ativa ou desativa o zoom do mapa
       // rotateEnabled={false}  // Ativa ou desativa a retacao do mapa
       // showsTraffic={true} // Mostra o trafego
+      onPress={(e) => {
+        setMarkers([...markers, {
+          key: markers.length,
+          coords: {
+            latitude: e.nativeEvent.coordinate.latitude,
+            longitude: e.nativeEvent.coordinate.longitude,
+          },
+          pinColor: "#FF0000"
+        }])
+      }}
       >
         {/* <Marker
           coordinate={{
