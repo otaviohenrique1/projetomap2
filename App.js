@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from "react-native-maps";
+import Pin from "./src/components/Pin";
 
 /*
 SP: 
@@ -26,27 +27,24 @@ export default function App() {
   const [markers, setMarkers] = useState([
     {
       key: 0,
-      coords: {
-        latitude: -15.8080374,
-        longitude: -47.8750231
-      },
-      pinColor: "#FF0000",
+      image: require("./assets/images/carro.png"),
+      coords: { latitude: -15.8080374, longitude: -47.8750231 },
+      pinColor: "red",
+      aviso: "Perigoso",
     },
     {
       key: 1,
-      coords: {
-        latitude: -15.8380374,
-        longitude: -47.8850231
-      },
-      pinColor: "#00FF00",
+      image: require("./assets/images/carro_down.png"),
+      coords: { latitude: -15.8380374, longitude: -47.8850231 },
+      pinColor: "green",
+      aviso: "Tranquilo",
     },
     {
       key: 2,
-      coords: {
-        latitude: -15.8480374,
-        longitude: -47.8950231
-      },
-      pinColor: "#0000FF",
+      image: require("./assets/images/carro_left.png"),
+      coords: { latitude: -15.8480374, longitude: -47.8950231 },
+      pinColor: "red",
+      aviso: "Perigoso",
     },
   ]);
 
@@ -102,30 +100,31 @@ export default function App() {
           });
           // setTexto(regionData.latitude);
         }} // Ativa quando o mapa terminar de ser movido
-      // onPress={(e) => {
-      //   Alert.alert(
-      //     "Clicou",
-      //     `
-      //       Latitule: ${e.nativeEvent.coordinate.latitude}
-      //       Longitude: ${e.nativeEvent.coordinate.longitude}
-      //     `
-      //   );
-      // }} // Quando o mapa for clicado
-      // mapType='standard' // Tipo do mapa exibido
-      // scrollEnabled={false} // Ativa ou desativa o movimento do mapa
-      // zoomEnabled={false} // Ativa ou desativa o zoom do mapa
-      // rotateEnabled={false}  // Ativa ou desativa a retacao do mapa
-      // showsTraffic={true} // Mostra o trafego
-      onPress={(e) => {
-        setMarkers([...markers, {
-          key: markers.length,
-          coords: {
-            latitude: e.nativeEvent.coordinate.latitude,
-            longitude: e.nativeEvent.coordinate.longitude,
-          },
-          pinColor: "#FF0000"
-        }])
-      }}
+        // onPress={(e) => {
+        //   Alert.alert(
+        //     "Clicou",
+        //     `
+        //       Latitule: ${e.nativeEvent.coordinate.latitude}
+        //       Longitude: ${e.nativeEvent.coordinate.longitude}
+        //     `
+        //   );
+        // }} // Quando o mapa for clicado
+        // mapType='standard' // Tipo do mapa exibido
+        // scrollEnabled={false} // Ativa ou desativa o movimento do mapa
+        // zoomEnabled={false} // Ativa ou desativa o zoom do mapa
+        // rotateEnabled={false}  // Ativa ou desativa a retacao do mapa
+        // showsTraffic={true} // Mostra o trafego
+        onPress={(e) => {
+          setMarkers([...markers, {
+            key: markers.length,
+            coords: {
+              latitude: e.nativeEvent.coordinate.latitude,
+              longitude: e.nativeEvent.coordinate.longitude,
+            },
+            pinColor: "#FF0000",
+            // image: require("./assets/images/carro.png"),
+          }])
+        }}
       >
         {/* <Marker
           coordinate={{
@@ -138,13 +137,34 @@ export default function App() {
         /> */}
         {markers.map((marker) => {
           return (
+            // <Marker
+            //   key={marker.key}
+            //   coordinate={marker.coords}
+            //   title='Meu carro'
+            //   description='Gol 1.6 - Placa OHL 2010'
+            //   pinColor={marker.pinColor}
+            //   // image={marker.image}
+            // />
             <Marker
               key={marker.key}
               coordinate={marker.coords}
-              title='Meu carro'
-              description='Gol 1.6 - Placa OHL 2010'
-              pinColor={marker.pinColor}
-            />
+              // title='Meu carro'
+              // description='Gol 1.6 - Placa OHL 2010'
+              // pinColor={marker.pinColor}
+              // image={marker.image}
+            >
+              {/* <View style={[styles.viewMarker, {
+                backgroundColor: marker.pinColor,
+              }]}>
+                <Text style={styles.textoMarker}>
+                  {marker.aviso}
+                </Text>
+              </View> */}
+              <Pin
+                aviso={marker.aviso}
+                corFundo={marker.pinColor}
+              />
+            </Marker>
           );
         })}
       </MapView>
@@ -200,5 +220,15 @@ const styles = StyleSheet.create({
   mapa: {
     width: "100%",
     height: 550,
-  }
+  },
+  viewMarker: {
+    height: 30,
+    padding: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 5,
+  },
+  textoMarker: {
+    color: "#FFFFFF",
+  },
 });
