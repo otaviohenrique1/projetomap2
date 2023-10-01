@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from "react-native-maps";
-import Pin from "./src/components/Pin";
+import Pin from '../components/Pin';
 
 /*
 SP: 
@@ -26,21 +26,21 @@ export default function Mapa4() {
   const [markers, setMarkers] = useState([
     {
       key: 0,
-      image: require("./assets/images/carro.png"),
+      image: require("../../assets/images/carro.png"),
       coords: { latitude: -15.8080374, longitude: -47.8750231 },
       pinColor: "red",
       aviso: "Perigoso",
     },
     {
       key: 1,
-      image: require("./assets/images/carro_down.png"),
+      image: require("../../assets/images/carro_down.png"),
       coords: { latitude: -15.8380374, longitude: -47.8850231 },
       pinColor: "green",
       aviso: "Tranquilo",
     },
     {
       key: 2,
-      image: require("./assets/images/carro_left.png"),
+      image: require("../../assets/images/carro_left.png"),
       coords: { latitude: -15.8480374, longitude: -47.8950231 },
       pinColor: "red",
       aviso: "Perigoso",

@@ -27,21 +27,21 @@ export default function App2() {
   const [markers, setMarkers] = useState([
     {
       key: 0,
-      image: require("./assets/images/carro.png"),
+      image: require("../../assets/images/carro.png"),
       coords: { latitude: -15.8080374, longitude: -47.8750231 },
       pinColor: "red",
       aviso: "Perigoso",
     },
     {
       key: 1,
-      image: require("./assets/images/carro_down.png"),
+      image: require("../../assets/images/carro_down.png"),
       coords: { latitude: -15.8380374, longitude: -47.8850231 },
       pinColor: "green",
       aviso: "Tranquilo",
     },
     {
       key: 2,
-      image: require("./assets/images/carro_left.png"),
+      image: require("../../assets/images/carro_left.png"),
       coords: { latitude: -15.8480374, longitude: -47.8950231 },
       pinColor: "red",
       aviso: "Perigoso",
